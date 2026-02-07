@@ -83,8 +83,48 @@
   </table>
 </div>
 
+<!-- ================= TEST ANALYZER SECTION ================= -->
+<section class="test-analyzer">
+  <h2>🧪 Test Sheet Analyzer</h2>
+
+  <div class="analyzer-inputs">
+    <input
+      type="text"
+      id="clientSheetUrl"
+      placeholder="Client Test Sheet CSV URL"
+    />
+    <input
+      type="text"
+      id="flabsSheetUrl"
+      placeholder="FLABS Master Test Sheet CSV URL"
+    />
+    <button onclick="runTestAnalyzer()">Analyze</button>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi">Total Client Tests<strong id="kpiTotal">0</strong></div>
+    <div class="kpi">Client Duplicates<strong id="kpiClientDup">0</strong></div>
+    <div class="kpi">FLABS Duplicates<strong id="kpiFlabsDup">0</strong></div>
+    <div class="kpi">Already Exists<strong id="kpiExists">0</strong></div>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Test Name</th>
+          <th>Client Price</th>
+          <th>FLABS Match</th>
+          <th>Issue</th>
+        </tr>
+      </thead>
+      <tbody id="analyzerTable"></tbody>
+    </table>
+  </div>
+</section>
 
 <!-- JS -->
 <script src="script.js"></script>
 </body>
 </html>
+
