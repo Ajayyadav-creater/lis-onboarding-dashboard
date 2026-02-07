@@ -1,0 +1,143 @@
+:root {
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --primary: #2563eb;
+  --dark: #0f172a;
+  --green: #16a34a;
+  --yellow: #ca8a04;
+  --red: #dc2626;
+  --border: #e5e7eb;
+}
+header {
+  background: linear-gradient(90deg, #020617, #0f172a);
+  color: white;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-left h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.header-left small {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+}
+.filters select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 13px;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .main-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .filters {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+
+* {
+  box-sizing: border-box;
+}
+h3 {
+  margin: 20px 0 10px;
+  color: #0f172a;
+}
+
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+}
+
+header {
+  background: var(--dark);
+  color: white;
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.filters select {
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: none;
+}
+
+.container {
+  padding: 16px;
+}
+
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.kpi {
+  background: var(--card);
+  padding: 14px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.kpi strong {
+  display: block;
+  font-size: 20px;
+}
+
+.table-wrapper {
+  background: var(--card);
+  border-radius: 10px;
+  overflow-x: auto;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+th, td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+  font-size: 13px;
+}
+
+th {
+  background: #f1f5f9;
+}
+
+.status-green { color: var(--green); font-weight: 600; }
+.status-yellow { color: var(--yellow); font-weight: 600; }
+.status-red { color: var(--red); font-weight: 600; }
+
+@media (max-width: 768px) {
+  table {
+    min-width: 700px;
+  }
+}
