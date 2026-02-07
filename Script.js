@@ -137,4 +137,102 @@ function applyFilters() {
 }
 
 loadFromGoogleSheet();
+async function runTestAnalyzer() {
+  const clientUrl = document.getElementById("clientSheetUrl").value;
+  const flabsUrl = document.getElementById("flabsSheetUrl").value;
+
+  if (!clientUrl || !flabsUrl) {
+    alert("Please provide both sheet URLs");
+    return;
+  }
+
+  const clientData = await fetchCsv(clientUrl);
+  const flabsData = await fetchCsv(flabsUrl);
+
+  analyzeTests(clientData, flabsData);
+}
+
+async function fetchCsv(url) {
+  const res = await fetch(url);
+  const text = await res.text();
+  return text.split("\n").slice(1).map(r => r.split(","));
+}
+
+function normalize(name) {
+  return name.trim().toLowerCase();
+}
+
+function analyzeTests(clientRows, flabsRows) {
+  const table = document.getElementById("analyzerTable");
+  table.innerHTML = "";
+
+  let total = 0;
+  let clientDup = 0;
+  let flabsDup = 0;
+  let exists = 0;
+
+  const clientMap = {};
+  const flabsMap = {};
+
+  // FLABS map
+  flabsRows.forEach(r => {
+    const name = normalize(r[1] || "");
+    if (!name) return;
+    flabsMap[name] = (flabsMap[name] || 0) + 1;
+  });
+
+  // Client map
+  clientRows.forEach(r => {
+    const name = normalize(r[0] || "");
+    if (!name) return;
+    clientMap[name] = (clientMap[name] || 0) + 1;
+  });
+
+  clientRows.forEach(r => {
+    const testNameRaw = r[0];
+    const price = r[1];
+    if (!testNameRaw) return;
+
+    total++;
+    const testName = normalize(testNameRaw);
+
+    let issue = "OK";
+    let cls = "status-ok";
+    let flabsMatch = "-";
+
+    if (clientMap[testName] > 1) {
+      issue = "Duplicate in Client Sheet";
+      cls = "status-warn";
+      clientDup++;
+    }
+
+    if (flabsMap[testName]) {
+      flabsMatch = flabsMap[testName] + " match(es)";
+      exists++;
+      if (flabsMap[testName] > 1) {
+        issue = "Duplicate in FLABS";
+        cls = "status-bad";
+        flabsDup++;
+      } else if (issue === "OK") {
+        issue = "Already exists in FLABS";
+        cls = "status-warn";
+      }
+    }
+
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${testNameRaw}</td>
+      <td>${price || "-"}</td>
+      <td>${flabsMatch}</td>
+      <td class="${cls}">${issue}</td>
+    `;
+    table.appendChild(tr);
+  });
+
+  document.getElementById("kpiTotal").textContent = total;
+  document.getElementById("kpiClientDup").textContent = clientDup;
+  document.getElementById("kpiFlabsDup").textContent = flabsDup;
+  document.getElementById("kpiExists").textContent = exists;
+}
+
 
