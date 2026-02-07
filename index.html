@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lab Test Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Lab Test OCR & Duplicate Dashboard</h1>
+</header>
+
+<main class="container">
+
+    <section class="right">
+  <h3>Extracted Tests</h3>
+
+  <table id="testTable">
+    <thead>
+      <tr>
+        <th>Test Code</th>
+        <th>Test Name</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <button id="copyBtn">Copy All</button>
+</section>
+
+
+  <section class="left">
+    <h3>Upload Test Image</h3>
+    <input type="file" id="imageUpload" accept="image/png">
+    <img id="preview">
+    <button id="ocrBtn">Extract Text</button>
+  </section>
+
+  <section class="right">
+    <h3>Extracted Text</h3>
+    <textarea id="ocrOutput"></textarea>
+  </section>
+
+</main>
+
+<footer>
+  <span id="status">Waiting for image...</span>
+</footer>
+
+<script src="https://unpkg.com/tesseract.js@4/dist/tesseract.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
