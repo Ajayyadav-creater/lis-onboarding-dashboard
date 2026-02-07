@@ -141,3 +141,40 @@ th {
     min-width: 700px;
   }
 }
+.test-analyzer {
+  margin-top: 40px;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.analyzer-inputs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.analyzer-inputs input {
+  flex: 1;
+  min-width: 240px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+.analyzer-inputs button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.status-ok { color: green; }
+.status-warn { color: orange; }
+.status-bad { color: red; }
+
+
