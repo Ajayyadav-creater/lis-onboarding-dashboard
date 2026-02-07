@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LIS Onboarding Control Dashboard</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-left">
+    <h2>LIS Onboarding Control Dashboard</h2>
+    <small>Phase-wise tracking with validation & exceptions</small>
+  </div>
+
+  <div class="filters">
+    <select id="statusFilter">
+      <option value="ALL">All Status</option>
+      <option value="READY">Ready</option>
+      <option value="AT RISK">At Risk</option>
+      <option value="BLOCKED">Blocked</option>
+    </select>
+
+    <select id="engineerFilter">
+      <option value="ALL">All Engineers</option>
+    </select>
+
+    <select id="cityFilter">
+      <option value="ALL">All Cities</option>
+    </select>
+  </div>
+</header>
+
+
+<div class="container">
+
+  <!-- KPI STRIP -->
+   <h3>Engineer Workload</h3>
+<div id="engineerKpi" class="kpi-strip"></div>
+
+  <div class="kpi-strip">
+    <div class="kpi">Total Labs<strong id="kpiTotal">0</strong></div>
+    <div class="kpi">Ready 🟢<strong id="kpiReady">0</strong></div>
+    <div class="kpi">At Risk 🟡<strong id="kpiRisk">0</strong></div>
+    <div class="kpi">Blocked 🔴<strong id="kpiBlocked">0</strong></div>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Lab Name</th>
+          <th>City</th>
+          <th>Onboarding Engineer</th>
+          <th>Phase</th>
+          <th>Test ID</th>
+          <th>Price</th>
+          <th>B2B</th>
+          <th>Users</th>
+          <th>Go-Live</th>
+        </tr>
+      </thead>
+      <tbody id="labTableBody"></tbody>
+    </table>
+  </div>
+
+</div>
+<h3>🚨 Engineer vs Blocked Labs</h3>
+
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Engineer</th>
+        <th>Blocked Labs</th>
+      </tr>
+    </thead>
+    <tbody id="blockedByEngineer"></tbody>
+  </table>
+</div>
+
+
+<!-- JS -->
+<script src="script.js"></script>
+</body>
+</html>
